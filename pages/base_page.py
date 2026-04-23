@@ -1,4 +1,4 @@
-from playwright.sync_api import Page, Locator
+from playwright.sync_api import Page
 
 
 class BasePage:
@@ -15,16 +15,13 @@ class BasePage:
         self.page.fill(selector, value)
     
     def get_text(self, selector: str) -> str:
-        return self.page.text_content(selector)
-    
-    def wait_for_element(self, selector: str, timeout: int = 30000):
-        self.page.wait_for_selector(selector, timeout=timeout)
+        return self.page.inner_text(selector)
     
     def is_visible(self, selector: str) -> bool:
         return self.page.is_visible(selector)
     
-    def screenshot(self, filename: str):
-        self.page.screenshot(path=filename)
+    def wait_for_element(self, selector: str, timeout: int = 5000):
+        self.page.wait_for_selector(selector, timeout=timeout)
     
-    def wait_for_timeout(self, timeout: int):
-        self.page.wait_for_timeout(timeout)
+    def screenshot(self, path: str):
+        self.page.screenshot(path=path)

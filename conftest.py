@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import Page
 from pytest_html import extras
+import os
 
 
 @pytest.fixture(scope="function")
@@ -49,7 +50,8 @@ def pytest_runtest_makereport(item, call):
         if "page" in item.fixturenames:
             try:
                 page = item.funcargs["page"]
-                screenshot_name = f"reports/screenshots/{item.name}.png"
+                os.makedirs("reports/screenshots", exist_ok=True)
+                screenshot_name = f"reports/screenshots/failure_{item.name}.png"
                 page.screenshot(path=screenshot_name)
                 report.extra = [
                     pytest_html.extras.image(screenshot_name, name="Screenshot on failure")

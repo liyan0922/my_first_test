@@ -6,13 +6,13 @@ class TestScreenshot:
     
     def test_take_screenshot(self, page: Page):
         # 打开网站
-        page.goto("https://www.webdriveruniversity.com")
+        page.goto("https://www.saucedemo.com")
         
         # 等待页面加载完成
         page.wait_for_load_state("networkidle")
         
-        # 截图并保存到当前目录
-        screenshot_path = "webdriveruniversity_screenshot.png"
+        # 截图并保存到reports/screenshots/目录
+        screenshot_path = "reports/screenshots/saucedemo_screenshot.png"
         page.screenshot(path=screenshot_path)
         
         print(f"Screenshot saved to: {screenshot_path}")
