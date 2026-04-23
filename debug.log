@@ -1,0 +1,2 @@
+[0421/163153.801:WARNING:net\spdy\spdy_session.cc:3071] Received HEADERS for invalid stream 1
+[0422/091800.468:WARNING:net\spdy\spdy_session.cc:3071] Received HEADERS for invalid stream 7
