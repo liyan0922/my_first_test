@@ -1,9 +1,57 @@
 import pytest
 from playwright.sync_api import Page
+from pages import login_page
 from pages.login_page import LoginPage
 
 
 class TestLogin:
+
+    """
+    数据驱动测试示例
+    """
+    @pytest.mark.parametrize("username, password", [
+        ("standard_user", "secret_sauce"),      # 标准用户
+        ("problem_user", "secret_sauce"),       # 有问题的用户
+        ("performance_glitch_user", "secret_sauce"),  # 性能问题用户
+        ("error_user", "secret_sauce"),         # 错误用户
+        ("visual_user", "secret_sauce"),        # 视觉用户
+    ])
+
+    def test_login_with_multiple_users(self,page,username,password):
+        """
+        测试多个用户都能成功登录
+        """
+        login_page = LoginPage(page)
+        login_page.navigate(login_page.URL)
+        login_page.login(username,password)
+
+        # 验证登录成功，应该跳转到inventory.html页面
+        assert "inventory.html" in page.url, f"用户 {username} 登录失败"
+
+        #退出登录，为下一个测试做准备
+        page.click("button#react-burger-menu-btn")
+        page.click("#logout_sidebar_link")
+
+
+    
+    @pytest.mark.parametrize("username,password,expected_error",[
+        ("locked_out_user", "secret_sauce", "locked out"),  # 被锁定的用户
+        ("standard_user", "wrong_password", "password"),    # 错误密码
+        ("", "secret_sauce", "username"),                  # 空用户名
+        ("standard_user", "", "password"),                 # 空密码
+    ])
+    def test_login_failure_scenarios(self,page,username,password,expected_error):
+        """
+        测试各种登录失败场景
+        """
+        login_page = LoginPage(page)
+        login_page.navigate(login_page.URL)
+        login_page.login(username,password)
+        
+        # 验证错误消息包含预期关键字
+        error_message = page.locator('[data-test="error"]').text_content()
+        assert expected_error.lower() in error_message.lower(),\
+            f"期望错误包含'{expected_error}',实际为'{error_message}'"
     
     @pytest.fixture(autouse=True)
     def setup(self, page: Page):

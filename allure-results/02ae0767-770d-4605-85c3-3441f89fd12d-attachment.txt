@@ -1,0 +1,1 @@
+✅测试通过，商品名称为：<bound method ItemsDetailPage.get_item_name of <pages.item_detail_page.ItemsDetailPage object at 0x0000021ED3018A90>>

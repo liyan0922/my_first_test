@@ -3,11 +3,13 @@ from playwright.sync_api import Page
 from pytest_html import extras
 import os
 
+import pytest_html
 
 @pytest.fixture(scope="function")
 def page(browser):
     page = browser.new_page()
     yield page
+    headless=False
     page.close()
 
 
@@ -54,7 +56,7 @@ def pytest_runtest_makereport(item, call):
                 screenshot_name = f"reports/screenshots/failure_{item.name}.png"
                 page.screenshot(path=screenshot_name)
                 report.extra = [
-                    pytest_html.extras.image(screenshot_name, name="Screenshot on failure")
+                    extras.image(screenshot_name, name="Screenshot on failure")
                 ]
             except:
                 pass
