@@ -66,21 +66,41 @@ jobs:
 
       # 🔔 测试失败时发送通知
       - name: Send failure notification
-        if: failure()
+        if: failure()   # 注意：必须写 failure()，不要加额外的条件
         env:
           WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK_URL }}
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK_URL }}
         run: |
-          # 构建失败消息
-          MESSAGE="## 🚨 测试流水线失败\n\n- **仓库**: ${{ github.repository }}\n- **分支**: ${{ github.ref_name }}\n- **提交者**: ${{ github.actor }}\n- **Commit**: ${{ github.sha }}\n- **Actions 链接**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          
-          # 发送到企业微信（如果配置了 webhook）
-          if [ -n "$WECOM_WEBHOOK" ]; then
-            curl -X POST -H "Content-Type: application/json" \
-              -d "{\"msgtype\": \"markdown\", \"markdown\": {\"content\": \"$MESSAGE\"}}" \
-              "$WECOM_WEBHOOK"
-            echo "企业微信通知已发送"
+          set -e
+          echo "::group::发送企业微信通知"
+          if [ -z "$WECOM_WEBHOOK" ]; then
+            echo "❌ 未配置 WECOM_WEBHOOK_URL，跳过发送"
+            exit 0
           fi
+          MESSAGE=$(cat <<EOF
+          ## 🚨 测试流水线失败
+
+          - **仓库**: ${{ github.repository }}
+          - **分支**: ${{ github.ref_name }}
+          - **提交者**: ${{ github.actor }}
+          - **Commit**: ${{ github.sha }}
+          - **Actions 链接**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EOF
+          )
+          # 发送请求并打印响应（调试用）
+          RESPONSE=$(curl -w "\n%{http_code}" -s -X POST -H "Content-Type: application/json" \
+            -d "{\"msgtype\": \"markdown\", \"markdown\": {\"content\": $(echo "$MESSAGE" | jq -Rs .)}}" \
+            "$WECOM_WEBHOOK")
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          echo "HTTP状态码: $HTTP_CODE"
+          echo "响应内容: $BODY"
+          if [ "$HTTP_CODE" -ne 200 ]; then
+            echo "❌ 企业微信通知发送失败"
+            exit 1
+          else
+            echo "✅ 企业微信通知发送成功"
+          fi
+          echo "::endgroup::"
 
   deploy-report:
     needs: test
