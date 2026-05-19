@@ -61,7 +61,7 @@ def test_intercept_failed_login(page):
                 method: 'POST',
                 body: JSON.stringify({user: 'bad', pass: 'wrong'})
             });
-            return {status: res.status, body: await res.json()};
+            return {status: res.status, body: await res.text()};
         }
     """)
 

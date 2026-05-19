@@ -92,3 +92,21 @@ jobs:
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -m "Update Allure report from branch ${{ github.ref_name }}"
           git push origin gh-pages
+
+      # 🔔 测试失败时发送通知
+      - name: Send failure notification
+        if: failure()
+        env:
+          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK_URL }}
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+        run: |
+          # 构建失败消息
+          MESSAGE="## 🚨 测试流水线失败\n\n- **仓库**: ${{ github.repository }}\n- **分支**: ${{ github.ref_name }}\n- **提交者**: ${{ github.actor }}\n- **Commit**: ${{ github.sha }}\n- **Actions 链接**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          
+          # 发送到企业微信（如果配置了 webhook）
+          if [ -n "$WECOM_WEBHOOK" ]; then
+            curl -X POST -H "Content-Type: application/json" \
+              -d "{\"msgtype\": \"markdown\", \"markdown\": {\"content\": \"$MESSAGE\"}}" \
+              "$WECOM_WEBHOOK"
+            echo "企业微信通知已发送"
+          fi
