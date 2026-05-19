@@ -14,33 +14,33 @@ jobs:
 
   # 3. 定义具体的执行步骤
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
   # 步骤2：设置 Python 环境
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.11  
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  
 
   # 步骤3：安装依赖
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pytest-playwright
-        # 注意：这里不需要再安装 playwright，只安装浏览器驱动即可
-        playwright install chromium
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest-playwright
+          # 注意：这里不需要再安装 playwright，只安装浏览器驱动即可
+          playwright install chromium 
 
   # 步骤4：运行你的 Pytest 测试
-    - name: Run Pytest
-      run: |
-        pytest tests/ -v --html=reports/report.html
+      - name: Run Pytest
+        run: |
+          pytest tests/ -v --html=reports/report.html
 
   # 步骤5：如果测试失败，上传报告作为附件方便查看（可选）
-    - name: Upload test report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-report
-        path: reports/
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/
