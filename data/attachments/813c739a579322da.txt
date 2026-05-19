@@ -1,0 +1,40 @@
+
+📊 开始加载页面（已启用图片拦截）...
+✅ 放行: https://www.saucedemo.com/...
+✅ 放行: https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wgh...
+✅ 放行: https://www.saucedemo.com/static/js/main.bcf4bc5f.js...
+✅ 放行: https://www.saucedemo.com/static/css/main.8a7d64a1.css...
+✅ 放行: https://events.backtrace.io/api/unique-events/submit?universe=UNIVERSE&token=TOK...
+✅ 放行: https://events.backtrace.io/api/summed-events/submit?universe=UNIVERSE&token=TOK...
+✅ 放行: https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriI5-g4vlH9VoD8Cmcqbu0-K4.w...
+✅ 放行: https://fonts.gstatic.com/s/dmmono/v16/aFTU7PB1QTsUX8KYthqQBA.woff2...
+✅ 放行: https://fonts.gstatic.com/s/dmmono/v16/aFTR7PB1QTsUX8KYvumzEYOtbQ.woff2...
+🚫 阻止图片: https://www.saucedemo.com/static/media/menu3x.52cc17a327296e6394f33e8c20abc62c.svg
+🚫 阻止图片: https://www.saucedemo.com/static/media/close@3x.a30a8a1db39c69f50a19aa3c34876918.svg
+🚫 阻止图片: https://www.saucedemo.com/static/media/sauce-backpack-1200x1500.0a0b85a385945026062b.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/bike-light-1200x1500.37c843b09a7d77409d63.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/bolt-shirt-1200x1500.c2599ac5f0a35ed5931e.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/sauce-pullover-1200x1500.51d7ffaf301e698772c8.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/red-onesie-1200x1500.2ec615b271ef4c3bc430.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/red-tatt-1200x1500.30dadef477804e54fc7b.jpg
+🚫 阻止图片: https://www.saucedemo.com/static/media/cart3x.3669d74ad0f420aa005c.svg
+🚫 阻止图片: https://www.saucedemo.com/static/media/filter3x.2943df5bcabfd174febc.svg
+🚫 阻止图片: https://www.saucedemo.com/static/media/arrow3x.4b825b78b4bd5f987b7d.svg
+📊 页面加载完成，耗时: 0.50 秒
+
+🔍 验证1：检查图片拦截情况
+   ✅ 成功阻止 11 个图片请求
+
+🔍 验证2：检查页面上的 img 元素
+   ✅ 页面上共 8 个 img 元素，全部未加载
+
+🔍 验证3：检查加载时间
+   📊 拦截图片后加载耗时: 0.50 秒
+   ✅ 加载时间在合理范围内
+
+==================================================
+✅ 图片拦截测试全部通过！
+   总计阻止: 11 个图片
+   被阻止的图片示例: ['https://www.saucedemo.com/static/media/menu3x.52cc17a327296e6394f33e8c20abc62c.svg', 'https://www.saucedemo.com/static/media/close@3x.a30a8a1db39c69f50a19aa3c34876918.svg', 'https://www.saucedemo.com/static/media/sauce-backpack-1200x1500.0a0b85a385945026062b.jpg']
+   正常放行请求: 9 个
+==================================================

@@ -1,0 +1,64 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue May 19 07:59:24 UTC 2026","Tue May 19 07:59:24 UTC 2026","45","tests","test_login","TestLogin","","","test_login_page_elements_visible",""
+"passed","Tue May 19 07:59:11 UTC 2026","Tue May 19 07:59:12 UTC 2026","433","tests","test_login","TestLogin","","","test_login_failure_scenarios[-secret_sauce-username]","
+        测试各种登录失败场景
+        "
+"passed","Tue May 19 07:59:28 UTC 2026","Tue May 19 07:59:29 UTC 2026","682","tests","test_mobile","TestMobileView","","","test_mobile_login[Pixel 5]","
+        在不同移动设备上测试登录功能
+        "
+"passed","Tue May 19 07:58:58 UTC 2026","Tue May 19 07:59:04 UTC 2026","6074","tests","test_login","TestLogin","","","test_login_with_multiple_users[performance_glitch_user-secret_sauce]","
+        测试多个用户都能成功登录
+        "
+"passed","Tue May 19 07:59:21 UTC 2026","Tue May 19 07:59:23 UTC 2026","2489","tests","test_login","TestLogin","","","test_login_with_empty_credentials",""
+"passed","Tue May 19 07:58:54 UTC 2026","Tue May 19 07:58:55 UTC 2026","1105","tests","test_login","TestLogin","","","test_login_with_multiple_users[standard_user-secret_sauce]","
+        测试多个用户都能成功登录
+        "
+"passed","Tue May 19 07:59:32 UTC 2026","Tue May 19 07:59:33 UTC 2026","405","tests","test_shopping_cart","TestShoppingCart","","","test_add_to_cart",""
+"passed","Tue May 19 07:59:09 UTC 2026","Tue May 19 07:59:09 UTC 2026","451","tests","test_login","TestLogin","","","test_login_failure_scenarios[locked_out_user-secret_sauce-locked out]","
+        测试各种登录失败场景
+        "
+"passed","Tue May 19 07:59:13 UTC 2026","Tue May 19 07:59:13 UTC 2026","437","tests","test_login","TestLogin","","","test_login_failure_scenarios[standard_user--password]","
+        测试各种登录失败场景
+        "
+"passed","Tue May 19 07:59:24 UTC 2026","Tue May 19 07:59:25 UTC 2026","680","tests","test_mobile","TestMobileView","","","test_mobile_login[iphone 12]","
+        在不同移动设备上测试登录功能
+        "
+"passed","Tue May 19 07:58:50 UTC 2026","Tue May 19 07:58:51 UTC 2026","572","tests","test_checkout","","","","test_checkout_flow","测试结账流程"
+"passed","Tue May 19 07:59:07 UTC 2026","Tue May 19 07:59:08 UTC 2026","1107","tests","test_login","TestLogin","","","test_login_with_multiple_users[visual_user-secret_sauce]","
+        测试多个用户都能成功登录
+        "
+"passed","Tue May 19 07:58:52 UTC 2026","Tue May 19 07:58:52 UTC 2026","23","tests","test_intercept_login","","","","test_intercept_failed_login","
+    模拟登录失败响应
+    "
+"passed","Tue May 19 07:59:05 UTC 2026","Tue May 19 07:59:06 UTC 2026","1074","tests","test_login","TestLogin","","","test_login_with_multiple_users[error_user-secret_sauce]","
+        测试多个用户都能成功登录
+        "
+"passed","Tue May 19 07:58:56 UTC 2026","Tue May 19 07:58:57 UTC 2026","1089","tests","test_login","TestLogin","","","test_login_with_multiple_users[problem_user-secret_sauce]","
+        测试多个用户都能成功登录
+        "
+"passed","Tue May 19 07:58:52 UTC 2026","Tue May 19 07:58:53 UTC 2026","894","tests","test_intercept_login","","","","test_block_images","
+    完整测试：拦截图片并验证效果
+    验证内容：
+    1. 拦截器确实阻止了图片请求
+    2. 页面上的 img 元素没有真正加载图片
+    3. 拦截后页面加载速度更快
+    "
+"passed","Tue May 19 07:59:17 UTC 2026","Tue May 19 07:59:20 UTC 2026","2511","tests","test_login","TestLogin","","","test_login_with_invalid_credentials",""
+"passed","Tue May 19 07:59:10 UTC 2026","Tue May 19 07:59:10 UTC 2026","455","tests","test_login","TestLogin","","","test_login_failure_scenarios[standard_user-wrong_password-password]","
+        测试各种登录失败场景
+        "
+"passed","Tue May 19 07:59:26 UTC 2026","Tue May 19 07:59:26 UTC 2026","626","tests","test_mobile","TestMobileView","","","test_mobile_login[iphone SE]","
+        在不同移动设备上测试登录功能
+        "
+"passed","Tue May 19 07:59:29 UTC 2026","Tue May 19 07:59:30 UTC 2026","620","tests","test_mobile","TestMobileView","","","test_touch_actions","
+        测试触摸屏操作
+        "
+"passed","Tue May 19 07:58:51 UTC 2026","Tue May 19 07:58:51 UTC 2026","278","tests","test_intercept_login","","","","test_intercept_successful_login","
+    拦截登录 API，模拟登录成功响应
+    "
+"passed","Tue May 19 07:58:48 UTC 2026","Tue May 19 07:58:49 UTC 2026","407","tests","test_cart","TestCart","","","test_add_sauce_labs_backpack_to_cart",""
+"passed","Tue May 19 07:59:27 UTC 2026","Tue May 19 07:59:28 UTC 2026","791","tests","test_mobile","TestMobileView","","","test_mobile_login[ipad]","
+        在不同移动设备上测试登录功能
+        "
+"passed","Tue May 19 07:59:14 UTC 2026","Tue May 19 07:59:16 UTC 2026","2569","tests","test_login","TestLogin","","","test_login_with_valid_credentials",""
+"passed","Tue May 19 07:59:30 UTC 2026","Tue May 19 07:59:31 UTC 2026","877","tests","test_screenshot","TestScreenshot","","","test_take_screenshot",""
