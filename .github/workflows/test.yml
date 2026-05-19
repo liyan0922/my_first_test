@@ -1,6 +1,7 @@
 name: Run Pytest Tests
 
 on:
+  workflow_dispatch: #手动触发
   push:
     branches: [master, main, framework-practice]
   pull_request:
