@@ -6,5 +6,5 @@ pytest-html==4.1.1
 pytest-xdist==3.5.0
 pytest-rerunfailures==14.0
 pixelmatch==0.3.0
-pillow==10.2.0   # 提供 PIL 模块
-allure-pytest==2.13.5   # 提供 allure 模块
+pillow==10.0.0   # 提供 PIL 模块
+allure-pytest==2.13.0   # 提供 allure 模块

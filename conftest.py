@@ -1,23 +1,33 @@
 import pytest
-from playwright.sync_api import Page
+from playwright.sync_api import sync_playwright
 from pytest_html import extras
 import os
 
 import pytest_html
 
+def is_ci_environment():
+    """检测是否在 CI 环境中运行（GitHub Actions、GitLab CI 等）"""
+    return os.getenv("CI") == "true" or os.getenv("GITHUB_ACTIONS") == "true"
+
 @pytest.fixture(scope="function")
 def page(browser):
-    page = browser.new_page()
+    """从 browser fixture 创建新页面"""
+    context = browser.new_context()
+    page = context.new_page()
     yield page
-    headless=False
     page.close()
+    context.close()
+    
 
 
 @pytest.fixture(scope="function")
-def browser(browser_type_launch_args):
-    from playwright.sync_api import sync_playwright
+def browser():
+    """提供浏览器实例，CI 环境中强制 headless=True"""
     with sync_playwright() as p:
-        browser = p.chromium.launch(**browser_type_launch_args)
+        # 根据环境选择 headless 模式
+        headless = True if is_ci_environment() else False
+        # 可选：你也可以保留其他 launch 参数，如 slow_mo（仅在本地调试时）
+        browser = p.chromium.launch(headless=headless)
         yield browser
         browser.close()
 
