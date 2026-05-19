@@ -53,7 +53,9 @@ def pytest_runtest_makereport(item, call):
             try:
                 page = item.funcargs["page"]
                 os.makedirs("reports/screenshots", exist_ok=True)
-                screenshot_name = f"reports/screenshots/failure_{item.name}.png"
+                from datetime import datetime
+                timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+                screenshot_name = f"reports/screenshots/failure_{item.name}_{timestamp}.png"
                 page.screenshot(path=screenshot_name)
                 report.extra = [
                     extras.image(screenshot_name, name="Screenshot on failure")

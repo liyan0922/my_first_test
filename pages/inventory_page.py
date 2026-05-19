@@ -71,6 +71,6 @@ class InventoryPage:
     def add_to_cart(self, product_name: str):
         """添加指定商品到购物车"""
         # 通过商品名称找到对应的添加按钮
-        product_item = self.page.locator(f'.inventory_item:has-text({product_name})')
+        product_item = self.page.locator(f'.inventory_item:has-text("{product_name}")')
         add_button = product_item.locator('button')
         add_button.click()

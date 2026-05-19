@@ -59,7 +59,7 @@ class TestProductSorting:
             assert actual_names == expected_order, f"排序 {sort_option} 后，商品顺序与预期不符\n期望: {expected_order}\n实际: {actual_names}"
             
 
-        @pytest.mark.parametrize("sort_option,expected_min_price,expected_max_price", [
+        @pytest.mark.parametrize("sort_option,expected_first_price,expected_last_price", [
             ("lohi", 7.99, 49.99),
             ("hilo", 49.99, 7.99),
             ])
@@ -77,3 +77,27 @@ class TestProductSorting:
             # Assert
             assert prices[0] == expected_first_price, f"第一个商品价格应为 {expected_first_price}，实际为 {prices[0]}"
             assert prices[-1] == expected_last_price, f"最后一个商品价格应为 {expected_last_price}，实际为 {prices[-1]}"
+        
+        @allure.story("购物车操作不影响排序")
+        def test_sorting_unchanged_after_add_to_cart(self, page: Page):
+            """验证：添加商品到购物车后，商品列表的排序不受影响"""
+            # Arrange - 准备
+            login_page = LoginPage(page)
+            login_page.navigate(login_page.URL)
+            login_page.login("standard_user", "secret_sauce")
+            inventory_page = InventoryPage(page)
+
+            # 默认排序是名称 A-Z，记录添加前的商品名称列表
+            before_names = inventory_page.get_product_names()
+
+            # Act - 操作：随机添加第一个商品到购物车
+            first_product_name = before_names[0]
+            inventory_page.add_to_cart(first_product_name)
+
+            # Assert - 验证添加后，商品名称列表是否保持不变
+            after_names = inventory_page.get_product_names()
+            assert after_names == before_names, f"添加商品 {first_product_name} 后，商品列表排序被改变"
+
+            
+            
+
