@@ -68,7 +68,7 @@ jobs:
       - name: Send failure notification
         if: failure()   # 注意：必须写 failure()，不要加额外的条件
         env:
-          WECOM_WEBHOOK: ${{ secrets.WECOM_WEBHOOK_URL }}
+          WECOM_WEBHOOK: ${{ secrets.WECOMERPORTACCEPT }}
         run: |
           set -e
           echo "::group::发送企业微信通知"
