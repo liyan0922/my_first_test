@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [master, main]
 
+# 授予 GITHUB_TOKEN 写入 contents 的权限（用于推送 gh-pages）
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
